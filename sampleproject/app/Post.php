@@ -14,4 +14,10 @@ class Post extends Model
     protected $fillable = [
       'content'
     ];
+    public function subject(){
+      return $this->belongsTo(Subject::class);
+    }
+    public function tags(){
+      return $this -> belongsToMany(Tag::class);
+    }
 }

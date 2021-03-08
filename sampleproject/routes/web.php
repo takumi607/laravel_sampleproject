@@ -1,5 +1,5 @@
 <?php
-
+use App\Post;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,10 +23,52 @@ Route::get('/about_us',function () {
 
 Route::get('/inspire','InspiringController@inspire');
 
-Route::get('/test',function () {
+Route::get('/test_read', function(){//データ読み込み
+    return App\Post::find(1);
+});
+Route::get('/test_edit', function(){//データ編集
+    $posts = App\Post::find(1);
+    $posts->content = 'Laravel demo 6.0 day 11';
+    $posts->save();
+    return $posts;
+});
+Route::get('/test_massedit', function(){//データまとめて変更
+    $posts = App\Post::all();
+    $posts->each->update([
+        'content' => 'Laravel demo 6.0 day 11 test'
+    ]);
+    return $posts;
+});
+Route::get('/test_add',function () {//データ新規作成
   $post =  new App\Post;
   $post->content = 'laravel de test';
   $post->save();
-  return $post;
-
+  return $posts;
 });
+Route::get('/test_delete', function(){//データ削除
+    $posts = App\Post::find(1);
+    $posts->delete();
+});
+Route::get('/test_massdelete', function(){//まとめて削除
+    $posts = App\Post::destroy([2, 3]);
+    return $posts;
+});
+Route::get('/test', function(){
+  return Post::cursor();
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
