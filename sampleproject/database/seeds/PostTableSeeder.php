@@ -14,9 +14,9 @@ class PostTableSeeder extends Seeder
     public function run()
     {
       $subject = Subject::where('name','測試主題')->first();
-      for ($index=0; $index < 10000; $index++) {
+      for ($index=0; $index < 1000; $index++) {
         $post = new Post;
-        $post->content = 'Laravel 6.0 demo';
+        $post->content = "Laravel 6.0 demo ${index} ";
         $post->subject_id = $subject->id;
         $post->save();
       }

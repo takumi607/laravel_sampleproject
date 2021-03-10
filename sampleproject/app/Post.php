@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\softDeletes;
 
 class Post extends Model
 {
+  use softDeletes;
   /**
    * The attributes that are mass assignable.
    *
